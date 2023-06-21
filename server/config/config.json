@@ -1,0 +1,26 @@
+{
+  "development": {
+    "username": "postgres",
+    "password": "root",
+    "database": "tracker",
+    "host": "localhost",
+    "port": 5432,
+    "dialect": "postgres"
+  },
+  "test": {
+    "username": "postgres",
+    "password": "root",
+    "database": "tracker_test",
+    "host": "localhost",
+    "port": 5432,
+    "dialect": "postgres"
+  },
+  "production": {
+    "username": "testing",
+    "password": "testing",
+    "database": "db",
+    "host": "host",
+    "port": 5432,
+    "dialect": "postgres"
+  }
+}
