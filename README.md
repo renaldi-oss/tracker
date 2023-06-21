@@ -1,70 +1,71 @@
-# Getting Started with Create React App
+# cara install tracker
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Pastikan PostgreSQL terinstall dan clone project
 
-## Available Scripts
+### Setting up frontend
 
-In the project directory, you can run:
+pindah ke folder tracker dan jalankan pada cli :\
+	`npm install`
 
-### `npm start`
+untuk menjalankan react, jalankan perintah berikut:\
+	`npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### Setting up backend
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+untuk koneksi ke database, rubah file pada folder server dengan nama `db.js` / `db2.js`
+kemudian rubah username, password, dan nama database sesuai dengan yang ada di komputer masing-masing
 
-### `npm test`
+	const sequelize = new Sequelize({database},{username}, {password}, {
+  	host: 'localhost',
+  	port: 5432,
+  	dialect: 'postgres',
+	});
+	<!-- jika ingin RawQuery -->
+	const Pool = require("pg").Pool;
+	const pool = new Pool({
+		user: "{username}",
+		password: "{password}",
+		host: "localhost",
+		port: 5432,
+		database: "{database}"
+	});
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Navigate into server folder and run:\
+	`npm install` OR `npm init` and step through default options
 
-### `npm run build`
+Install Express, PG and CORS:\
+	`npm i express pg cors`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Install nodemon secara global untuk memudahkan development:\
+	`npm install -g nodemon`
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+`server/index.js` mengandung kode untuk server.\
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+untuk menjalankan server, jalankan perintah berikut:\
+	`nodemon index`
 
-### `npm run eject`
+### Setting up PostgreSQL
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+setting up database dengan nama sesuai keinginan dan rubah nama database pada file `db.js`
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+buat table melalui cli
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+`sequelize db:migrate`
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
 
-## Learn More
+### Setting up PostgreSQL jika mau raw query
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Create and set database name and password
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+buat table dan jalankan query berikut pada postgresql
 
-### Code Splitting
+`CREATE TABLE companies (
+    id integer NOT NULL UNIQUE,
+    company_name varchar(50),
+    job_role varchar(50),
+    date_applied date,
+    app_status varchar(50)
+);`
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+****** ****** ****** ******
+star this repo if you like it :)
